@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>{% block title %}Oyeleke Azeezat Bisola | Administrative Professional{% endblock %}</title>
+    <meta name="title" content="Oyeleke Azeezat Bisola | Administrative Professional" />
+    <meta
+      name="description"
+      content="Portfolio of Oyeleke Azeezat Bisola — detail-oriented Administrative Professional and B.Sc. Agriculture (Fisheries) graduate specializing in office management, records handling, and staff coordination."
+    />
+    <meta
+      name="keywords"
+      content="Oyeleke Azeezat Bisola, Administrative Professional, Office Management, Coordination Specialist, Records Handling, NYSC, Portfolio, Administrator"
+    />
+    <meta name="author" content="Oyeleke Azeezat Bisola" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Oyeleke Azeezat Bisola | Administrative Professional" />
+    <meta
+      property="og:description"
+      content="Detail-oriented Administrative Professional specializing in office management, records handling, and staff coordination."
+    />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Oyeleke Azeezat Bisola | Administrative Professional" />
+    <meta
+      name="twitter:description"
+      content="Detail-oriented Administrative Professional specializing in office management, records handling, and staff coordination."
+    />
+
+    <meta name="theme-color" content="#0b1220" />
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS (Play CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy: {
+                50: '#eef2f9', 100: '#d5dded', 200: '#a9b9d9', 300: '#7d94c5',
+                400: '#5170b1', 500: '#3a568f', 600: '#2b4270', 700: '#1f3054',
+                800: '#152139', 900: '#0b1220',
+              },
+              gold: {
+                50: '#fdf8ec', 100: '#f9ecc8', 200: '#f2d98d', 300: '#eac152',
+                400: '#e3ad2f', 500: '#c9922a', 600: '#a67323', 700: '#835a20',
+                800: '#6d4a20', 900: '#5d3f1f',
+              },
+            },
+            fontFamily: {
+              sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+              serif: ['Playfair Display', 'ui-serif', 'Georgia', 'serif'],
+            },
+            boxShadow: {
+              soft: '0 10px 40px -12px rgba(11, 18, 32, 0.15)',
+              card: '0 4px 24px -8px rgba(11, 18, 32, 0.18)',
+            },
+            keyframes: {
+              float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-12px)' } },
+            },
+            animation: { float: 'float 6s ease-in-out infinite' },
+          },
+        },
+      }
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body class="bg-navy-50 font-sans text-navy-800 antialiased">
+    {% block body %}{% endblock %}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>

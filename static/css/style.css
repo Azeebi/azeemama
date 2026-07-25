@@ -1,0 +1,59 @@
+/* Custom styles layered on top of Tailwind Play CDN */
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #eac152;
+  color: #0b1220;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #eef2f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #7d94c5;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5170b1;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #eef2f9, 0 0 0 4px #e3ad2f;
+}
+
+/* Scroll reveal animation */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Skill bar fill transition */
+.skill-bar {
+  transition: width 1s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .skill-bar {
+    transition: none;
+  }
+}

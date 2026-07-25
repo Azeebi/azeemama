@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+{% from '_icons.html' import icon %}
+{% from '_macros.html' import heading %}
+
+{% block body %}
+<!-- Scroll progress bar -->
+<div id="progress-bar" class="fixed inset-x-0 top-0 z-[60] h-1 origin-left scale-x-0 bg-gradient-to-r from-gold-400 to-gold-200"></div>
+
+<!-- Navbar -->
+<header id="navbar" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+  <nav class="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4 sm:px-10 lg:px-16">
+    <a href="#home" class="flex items-center gap-2 font-serif text-lg font-bold text-white" aria-label="Go to home">
+      <span class="grid h-10 w-10 place-items-center rounded-xl bg-gold-400 font-bold text-navy-900">OA</span>
+      <span class="hidden sm:block">{{ personal.first_name }}</span>
+    </a>
+
+    <ul class="hidden items-center gap-7 lg:flex">
+      {% for link in nav_links %}
+      <li><a href="{{ link.href }}" class="text-sm font-medium text-navy-100 transition-colors hover:text-gold-300">{{ link.label }}</a></li>
+      {% endfor %}
+      <li><a href="#contact" class="inline-flex items-center justify-center gap-2 rounded-full bg-gold-400 px-5 py-2.5 text-sm font-semibold text-navy-900 shadow-soft transition-all hover:bg-gold-300">Hire Me</a></li>
+    </ul>
+
+    <button id="menu-toggle" class="grid h-11 w-11 place-items-center rounded-lg text-white lg:hidden" aria-label="Open menu" aria-expanded="false">
+      <span id="menu-icon">{{ icon('menu', 'w-7 h-7') }}</span>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="hidden overflow-hidden bg-navy-900/98 backdrop-blur lg:hidden">
+    <ul class="flex flex-col gap-1 px-6 pb-6 pt-2">
+      {% for link in nav_links %}
+      <li><a href="{{ link.href }}" class="mobile-link block rounded-lg px-4 py-3 text-base font-medium text-navy-100 transition-colors hover:bg-navy-800 hover:text-gold-300">{{ link.label }}</a></li>
+      {% endfor %}
+      <li class="mt-2 px-4"><a href="#contact" class="mobile-link inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold-400 px-7 py-3 text-sm font-semibold text-navy-900">Hire Me</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section id="home" class="relative flex min-h-screen items-center overflow-hidden bg-navy-900 text-white">
+    <div class="pointer-events-none absolute inset-0">
+      <div class="absolute -left-24 top-24 h-72 w-72 rounded-full bg-navy-600/40 blur-3xl"></div>
+      <div class="absolute -right-16 bottom-10 h-80 w-80 rounded-full bg-gold-500/20 blur-3xl"></div>
+      <div class="absolute inset-0 opacity-[0.04]" style="background-image: radial-gradient(circle at 1px 1px, #fff 1px, transparent 0); background-size: 32px 32px;"></div>
+    </div>
+
+    <div class="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 px-6 pb-16 pt-28 sm:px-10 lg:grid-cols-[1.15fr_0.85fr] lg:px-16">
+      <div>
+        <span data-reveal class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium text-navy-100">
+          <span class="h-2 w-2 animate-pulse rounded-full bg-gold-400"></span> Available for Administrative Roles
+        </span>
+        <h1 data-reveal class="font-serif text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+          Oyeleke <span class="text-gold-400">Azeezat</span> Bisola
+        </h1>
+        <p data-reveal class="mt-5 text-lg font-medium text-navy-100 sm:text-xl">
+          {{ personal.title }} <span class="text-gold-300">| {{ personal.subtitle }}</span>
+        </p>
+        <p data-reveal class="mt-6 max-w-xl text-base leading-relaxed text-navy-200">{{ personal.intro }}</p>
+        <div data-reveal class="mt-9 flex flex-wrap items-center gap-4">
+          <a href="#experience" class="inline-flex items-center justify-center gap-2 rounded-full bg-gold-400 px-7 py-3 text-sm font-semibold text-navy-900 shadow-soft transition-all hover:bg-gold-300">View Resume {{ icon('arrow-right', 'w-4 h-4') }}</a>
+          <a href="#contact" class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/25 px-7 py-3 text-sm font-semibold text-white transition-all hover:border-gold-400 hover:text-gold-300">Contact Me</a>
+          <a href="{{ url_for('cv') }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-semibold text-navy-100 underline-offset-4 transition-colors hover:text-gold-300 hover:underline">{{ icon('download', 'w-5 h-5') }} Download CV</a>
+        </div>
+        <div data-reveal class="mt-9 flex flex-wrap gap-x-6 gap-y-2 text-sm text-navy-200">
+          <span class="inline-flex items-center gap-2">{{ icon('mail', 'w-4 h-4 text-gold-400') }} {{ personal.email }}</span>
+          <span class="inline-flex items-center gap-2">{{ icon('location', 'w-4 h-4 text-gold-400') }} {{ personal.location }}</span>
+        </div>
+      </div>
+
+      <div data-reveal class="mx-auto">
+        <div class="relative animate-float">
+          <div class="absolute -inset-4 rounded-[2rem] bg-gradient-to-tr from-gold-400/30 to-navy-500/30 blur-2xl"></div>
+          <div class="relative grid h-64 w-64 place-items-center rounded-[2rem] border border-white/10 bg-gradient-to-br from-navy-700 to-navy-800 shadow-soft sm:h-80 sm:w-80">
+            <span class="font-serif text-7xl font-bold text-gold-400 sm:text-8xl">OAB</span>
+            <div class="absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gold-400 px-5 py-2 text-sm font-semibold text-navy-900 shadow-soft">NYSC Corps Member</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#about" class="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-1 text-navy-300 sm:flex" aria-label="Scroll to About">
+      <span class="text-xs uppercase tracking-widest">Scroll</span>
+      <span class="flex h-9 w-5 justify-center rounded-full border-2 border-navy-400 pt-1.5">
+        <span class="h-1.5 w-1.5 animate-bounce rounded-full bg-gold-400"></span>
+      </span>
+    </a>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="px-6 py-20 sm:px-10 md:py-28 lg:px-16">
+    <div class="mx-auto w-full max-w-6xl">
+      {{ heading('About Me', 'Bringing order, clarity, and initiative to every office') }}
+      <div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          {% for p in about.paragraphs %}
+          <p data-reveal class="mb-5 text-base leading-relaxed text-navy-600">{{ p }}</p>
+          {% endfor %}
+          <div data-reveal class="mt-8 grid grid-cols-3 gap-4">
+            {% for h in about.highlights %}
+            <div class="rounded-2xl border border-white/60 bg-white/80 p-4 text-center shadow-card backdrop-blur">
+              <div class="font-serif text-2xl font-bold text-gold-500 sm:text-3xl">{{ h.value }}</div>
+              <div class="mt-1 text-xs font-medium text-navy-500">{{ h.label }}</div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="space-y-4">
+          {% for f in about.focus_areas %}
+          <div data-reveal class="flex items-start gap-4 rounded-2xl border border-white/60 bg-white/80 p-5 shadow-card backdrop-blur transition-transform hover:translate-x-1.5">
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-navy-800 text-gold-400">{{ icon(f.icon, 'w-6 h-6') }}</span>
+            <div>
+              <h3 class="font-semibold text-navy-800">{{ f.title }}</h3>
+              <p class="mt-1 text-sm text-navy-500">{{ f.text }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education" class="bg-white px-6 py-20 sm:px-10 md:py-28 lg:px-16">
+    <div class="mx-auto w-full max-w-6xl">
+      {{ heading('Education', 'Academic Background', 'A strong educational foundation built across science, administration, and leadership.') }}
+      <div class="grid gap-6 md:grid-cols-3">
+        {% for edu in education %}
+        <article data-reveal class="group relative flex flex-col rounded-2xl border border-navy-100 bg-navy-50/60 p-6 transition-all hover:-translate-y-1.5 hover:shadow-card">
+          <span class="mb-5 grid h-12 w-12 place-items-center rounded-xl bg-navy-800 text-gold-400 transition-colors group-hover:bg-gold-400 group-hover:text-navy-900">{{ icon('cap', 'w-6 h-6') }}</span>
+          <span class="mb-2 inline-block w-fit rounded-full bg-gold-100 px-3 py-1 text-xs font-semibold text-gold-700">{{ edu.year }}</span>
+          <h3 class="font-serif text-lg font-bold text-navy-800">{{ edu.qualification }}</h3>
+          <p class="mt-2 text-sm text-navy-500">{{ edu.school }}</p>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="px-6 py-20 sm:px-10 md:py-28 lg:px-16">
+    <div class="mx-auto w-full max-w-6xl">
+      {{ heading('Professional Experience', 'A Timeline of Administrative Impact', 'Roles across education, agriculture, hospitality, and student leadership — each strengthening my coordination and organizational expertise.') }}
+      <div class="relative">
+        <div class="absolute left-5 top-2 hidden h-full w-0.5 bg-gradient-to-b from-gold-400 via-navy-200 to-transparent sm:block"></div>
+        <div class="space-y-8">
+          {% for job in experience %}
+          <article data-reveal class="relative sm:pl-16">
+            <span class="absolute left-0 top-1 hidden h-10 w-10 place-items-center rounded-full border-4 border-navy-50 bg-navy-800 text-gold-400 sm:grid">{{ icon('briefcase', 'w-5 h-5') }}</span>
+            <div class="rounded-2xl border border-white/60 bg-white/80 p-6 shadow-card backdrop-blur transition-shadow hover:shadow-soft">
+              <div class="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <h3 class="font-serif text-lg font-bold text-navy-800">{{ job.role }}</h3>
+                  <p class="text-sm font-medium text-gold-600">{{ job.company }}</p>
+                </div>
+                <span class="rounded-full px-3 py-1 text-xs font-semibold {{ 'bg-gold-400 text-navy-900' if job.current else 'bg-navy-100 text-navy-600' }}">{{ job.period }}</span>
+              </div>
+              <ul class="mt-4 space-y-2">
+                {% for point in job.points %}
+                <li class="flex items-start gap-2 text-sm leading-relaxed text-navy-600">
+                  <span class="mt-0.5 shrink-0 text-gold-500">{{ icon('check', 'w-4 h-4') }}</span>
+                  <span>{{ point }}</span>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="bg-white px-6 py-20 sm:px-10 md:py-28 lg:px-16">
+    <div class="mx-auto w-full max-w-6xl">
+      {{ heading('Core Skills', 'Capabilities That Keep Offices Running', 'A blend of technical administrative ability and people-focused coordination.') }}
+      <div class="grid gap-x-10 gap-y-7 md:grid-cols-2">
+        {% for skill in skills %}
+        <div data-reveal>
+          <div class="mb-2 flex items-center justify-between">
+            <span class="text-sm font-medium text-navy-700">{{ skill.name }}</span>
+            <span class="text-sm font-semibold text-gold-600">{{ skill.level }}%</span>
+          </div>
+          <div class="h-2.5 w-full overflow-hidden rounded-full bg-navy-100">
+            <div class="skill-bar h-full rounded-full bg-gradient-to-r from-navy-700 via-navy-500 to-gold-400" style="width: 0" data-level="{{ skill.level }}"></div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements & Interests -->
+  <section id="achievements" class="bg-navy-900 px-6 py-20 text-white sm:px-10 md:py-28 lg:px-16">
+    <div class="mx-auto w-full max-w-6xl">
+      {{ heading('Achievements & Leadership', 'Leadership That Delivers Results', 'Student union leadership and coordination experience that shaped my organizational impact.', light=True) }}
+      <div class="grid gap-6 md:grid-cols-2">
+        {% for a in achievements %}
+        <article data-reveal class="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition-all hover:-translate-y-1 hover:border-gold-400/40">
+          <div class="flex items-center gap-3">
+            <span class="grid h-11 w-11 place-items-center rounded-xl bg-gold-400 text-navy-900">{{ icon('star', 'w-6 h-6') }}</span>
+            <div>
+              <h3 class="font-serif text-lg font-bold text-white">{{ a.title }}</h3>
+              <p class="text-sm font-medium text-gold-300">{{ a.org }}</p>
+            </div>
+          </div>
+          <p class="mt-4 text-sm leading-relaxed text-navy-200">{{ a.description }}</p>
+        </article>
+        {% endfor %}
+      </div>
+
+      <div class="mt-16">
+        <h3 class="mb-6 font-serif text-2xl font-bold text-white">Interests</h3>
+        <div class="flex flex-wrap gap-4">
+          {% set interest_icons = ['book', 'mic', 'chat'] %}
+          {% for interest in interests %}
+          <span data-reveal class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-medium text-navy-100">
+            <span class="text-gold-400">{{ icon(interest_icons[loop.index0 % 3], 'w-5 h-5') }}</span> {{ interest }}
+          </span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="px-6 py-20 sm:px-10 md:py-28 lg:px-16">
+    <div class="mx-auto w-full max-w-6xl">
+      {{ heading('Get In Touch', "Let's Work Together", "Looking for a dependable administrative professional? I'd love to hear from you.") }}
+
+      <div class="grid gap-10 lg:grid-cols-2">
+        <div class="space-y-4">
+          <a href="mailto:{{ personal.email }}" data-reveal class="flex items-center gap-4 rounded-2xl border border-white/60 bg-white/80 p-5 shadow-card backdrop-blur transition-shadow hover:shadow-card">
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-navy-800 text-gold-400">{{ icon('mail', 'w-6 h-6') }}</span>
+            <div><p class="text-xs font-semibold uppercase tracking-wide text-navy-400">Email</p><p class="font-medium text-navy-700">{{ personal.email }}</p></div>
+          </a>
+          <a href="tel:{{ personal.phone_href }}" data-reveal class="flex items-center gap-4 rounded-2xl border border-white/60 bg-white/80 p-5 shadow-card backdrop-blur transition-shadow hover:shadow-card">
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-navy-800 text-gold-400">{{ icon('phone', 'w-6 h-6') }}</span>
+            <div><p class="text-xs font-semibold uppercase tracking-wide text-navy-400">Phone</p><p class="font-medium text-navy-700">{{ personal.phone }}</p></div>
+          </a>
+          <a href="{{ personal.linkedin }}" target="_blank" rel="noopener noreferrer" data-reveal class="flex items-center gap-4 rounded-2xl border border-white/60 bg-white/80 p-5 shadow-card backdrop-blur transition-shadow hover:shadow-card">
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-navy-800 text-gold-400">{{ icon('linkedin', 'w-5 h-5') }}</span>
+            <div><p class="text-xs font-semibold uppercase tracking-wide text-navy-400">LinkedIn</p><p class="font-medium text-navy-700">Connect with me</p></div>
+          </a>
+          <div data-reveal class="flex items-center gap-4 rounded-2xl border border-white/60 bg-white/80 p-5 shadow-card backdrop-blur">
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-navy-800 text-gold-400">{{ icon('location', 'w-6 h-6') }}</span>
+            <div><p class="text-xs font-semibold uppercase tracking-wide text-navy-400">Location</p><p class="font-medium text-navy-700">{{ personal.location }}</p></div>
+          </div>
+          <a href="{{ url_for('cv') }}" target="_blank" rel="noopener" class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold-400 px-7 py-3 text-sm font-semibold text-navy-900 shadow-soft transition-all hover:bg-gold-300">Download My CV</a>
+        </div>
+
+        <form action="{{ url_for('contact') }}" method="post" data-reveal class="space-y-5 rounded-2xl border border-white/60 bg-white/80 p-6 shadow-card backdrop-blur sm:p-8">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, msg in messages %}
+              <p class="rounded-xl px-4 py-3 text-sm font-medium {{ 'bg-green-50 text-green-700' if category == 'success' else 'bg-red-50 text-red-700' }}">{{ msg }}</p>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+          <div>
+            <label for="name" class="mb-1.5 block text-sm font-medium text-navy-700">Full Name</label>
+            <input id="name" name="name" type="text" required placeholder="Your name" class="w-full rounded-xl border border-navy-200 bg-white px-4 py-3 text-sm text-navy-800 outline-none transition-colors placeholder:text-navy-300 focus:border-gold-400" />
+          </div>
+          <div>
+            <label for="email" class="mb-1.5 block text-sm font-medium text-navy-700">Email Address</label>
+            <input id="email" name="email" type="email" required placeholder="you@example.com" class="w-full rounded-xl border border-navy-200 bg-white px-4 py-3 text-sm text-navy-800 outline-none transition-colors placeholder:text-navy-300 focus:border-gold-400" />
+          </div>
+          <div>
+            <label for="message" class="mb-1.5 block text-sm font-medium text-navy-700">Message</label>
+            <textarea id="message" name="message" rows="5" required placeholder="How can I help you?" class="w-full resize-none rounded-xl border border-navy-200 bg-white px-4 py-3 text-sm text-navy-800 outline-none transition-colors placeholder:text-navy-300 focus:border-gold-400"></textarea>
+          </div>
+          <button type="submit" class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold-400 px-7 py-3 text-sm font-semibold text-navy-900 shadow-soft transition-all hover:bg-gold-300">Send Message {{ icon('send', 'w-4 h-4') }}</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-navy-900 text-navy-200">
+  <div class="mx-auto w-full max-w-6xl px-6 py-14 sm:px-10 lg:px-16">
+    <div class="grid gap-10 md:grid-cols-3">
+      <div>
+        <a href="#home" class="font-serif text-2xl font-bold text-white">{{ personal.name }}</a>
+        <p class="mt-3 max-w-xs text-sm leading-relaxed text-navy-300">{{ personal.title }} committed to efficient office management, records handling, and staff coordination.</p>
+      </div>
+      <div>
+        <h3 class="mb-4 text-sm font-semibold uppercase tracking-wide text-white">Quick Links</h3>
+        <ul class="grid grid-cols-2 gap-2 text-sm">
+          {% for link in nav_links %}
+          <li><a href="{{ link.href }}" class="text-navy-300 transition-colors hover:text-gold-300">{{ link.label }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div>
+        <h3 class="mb-4 text-sm font-semibold uppercase tracking-wide text-white">Connect</h3>
+        <div class="space-y-2 text-sm">
+          <a href="mailto:{{ personal.email }}" class="flex items-center gap-2 text-navy-300 transition-colors hover:text-gold-300">{{ icon('mail', 'w-4 h-4') }} {{ personal.email }}</a>
+          <a href="tel:{{ personal.phone_href }}" class="flex items-center gap-2 text-navy-300 transition-colors hover:text-gold-300">{{ icon('phone', 'w-4 h-4') }} {{ personal.phone }}</a>
+          <a href="{{ personal.linkedin }}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-navy-300 transition-colors hover:text-gold-300">{{ icon('linkedin', 'w-4 h-4') }} LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row">
+      <p class="text-sm text-navy-400">© {{ current_year }} {{ personal.name }}. All rights reserved.</p>
+      <a href="#home" class="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm text-navy-200 transition-colors hover:bg-gold-400 hover:text-navy-900">Back to top {{ icon('arrow-up', 'w-4 h-4') }}</a>
+    </div>
+  </div>
+</footer>
+{% endblock %}

@@ -1,0 +1,9 @@
+{# Reusable section heading macro #}
+{% macro heading(eyebrow, title, description='', light=False) %}
+<div data-reveal class="mb-14 max-w-2xl">
+  <span class="mb-3 inline-block text-sm font-semibold uppercase tracking-[0.2em] text-gold-500">{{ eyebrow }}</span>
+  <h2 class="font-serif text-3xl font-bold sm:text-4xl {{ 'text-white' if light else 'text-navy-800' }}">{{ title }}</h2>
+  {% if description %}<p class="mt-4 text-base leading-relaxed {{ 'text-navy-100' if light else 'text-navy-500' }}">{{ description }}</p>{% endif %}
+  <div class="mt-5 h-1 w-20 rounded-full bg-gradient-to-r from-gold-400 to-gold-200"></div>
+</div>
+{% endmacro %}
