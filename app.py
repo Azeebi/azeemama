@@ -1,5 +1,6 @@
 """Flask application serving Oyeleke Azeezat Bisola's portfolio."""
 
+import os
 from datetime import datetime
 
 from flask import Flask, render_template, request, redirect, url_for, flash
@@ -7,7 +8,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from data import get_context
 
 app = Flask(__name__)
-app.secret_key = "change-this-secret-key-in-production"
+app.secret_key = os.environ.get("SECRET_KEY", "change-this-secret-key-in-production")
 
 
 @app.context_processor
@@ -44,4 +45,8 @@ def contact():
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=True)
+    # Render (and most hosts) provide the port via the PORT env var and require
+    # binding to 0.0.0.0 so the service is reachable. Locally it defaults to 5000.
+    port = int(os.environ.get("PORT", 5000))
+    debug = os.environ.get("FLASK_DEBUG", "0") == "1"
+    app.run(host="0.0.0.0", port=port, debug=debug)
